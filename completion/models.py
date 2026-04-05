@@ -9,4 +9,4 @@ class Completion(models.Model):
     
     
     def __str__(self):
-        return self.user
+        return f"{self.user.email} - {self.act.act}"

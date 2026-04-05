@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account',
     'completion',
     'dailyact',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
