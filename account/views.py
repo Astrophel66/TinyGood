@@ -39,13 +39,13 @@ class LoginView(APIView):
                 }, status=status.HTTP_200_OK)
             
 
-#         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
-# from rest_framework.permissions import AllowAny
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+from rest_framework.permissions import AllowAny
 
-# class ProfileView(APIView):
+class ProfileView(APIView):
 
-#     permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
-#     def get(self, request):
-#         serializer = UserProfileSerializer(request.user)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request):
+        serializer = UserProfileSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
