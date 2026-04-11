@@ -30,3 +30,12 @@ class CompleteActView(APIView):
             "message": "Great job! Act completed.",
             "completion": CompletionSerializer(completion).data
         }, status=status.HTTP_201_CREATED)
+    
+
+class HistoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        completions = Completion.objects.filter(user=request.user).order_by('-date')
+        serializer = CompletionSerializer(completions, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
