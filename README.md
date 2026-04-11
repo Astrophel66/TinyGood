@@ -44,7 +44,7 @@ python manage.py runserver
 
 ### Frontend
 ```bash
-cd tinygood-frontend
+cd frontend
 npm install
 npm start
 ```
