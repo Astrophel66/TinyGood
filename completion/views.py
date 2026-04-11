@@ -39,3 +39,27 @@ class HistoryView(APIView):
         completions = Completion.objects.filter(user=request.user).order_by('-date')
         serializer = CompletionSerializer(completions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class StreakView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        completions = Completion.objects.filter(
+            user=request.user
+        ).order_by('-date').values_list('date', flat=True)
+
+        if not completions:
+            return Response({"streak": 0}, status=status.HTTP_200_OK)
+
+        streak = 0
+        check_date = datetime.datetime.now(datetime.timezone.utc).date()
+
+        for completion_date in completions:
+            if completion_date.date() == check_date:
+                streak += 1
+                check_date -= datetime.timedelta(days=1)
+            else:
+                break
+
+        return Response({"streak": streak}, status=status.HTTP_200_OK)
