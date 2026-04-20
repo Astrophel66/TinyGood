@@ -5,7 +5,7 @@ A full-stack web app that generates one AI-powered kind act per day. Users can m
 ## Tech Stack
 
 **Backend:** Django, Django REST Framework, PostgreSQL, JWT Authentication, Anthropic API  
-**Frontend:** React, Axios, React Router
+**Frontend:** React, React Router
 
 ## Features
 
